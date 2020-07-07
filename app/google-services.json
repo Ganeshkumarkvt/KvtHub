@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "230612926083",
+    "firebase_url": "https://kvt-connector.firebaseio.com",
+    "project_id": "kvt-connector",
+    "storage_bucket": "kvt-connector.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230612926083:android:5f2d31a313e38e6f7ca5b6",
+        "android_client_info": {
+          "package_name": "com.example.kvthub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230612926083-g1cne52sf6jfps15p4kgbk58dve5opf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_0BIBHqkhT09QF5p4QayuRtsL2CHpsF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230612926083-g1cne52sf6jfps15p4kgbk58dve5opf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
