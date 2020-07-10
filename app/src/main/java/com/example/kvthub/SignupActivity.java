@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
@@ -92,13 +93,13 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            DatabaseReference userref = database.getReference().child("my_users").child(task.getResult().getUser().getUid());
+                            DatabaseReference userref = database.getReference().child("MyUsers").child(task.getResult().getUser().getUid());
 
                             if (task.isSuccessful()) {
                                 Map<String, String> users = new HashMap<>();
                                 users.put("Name", edtName.getText().toString());
-                                users.put("Date_Of_Birth", edtDOB.getText().toString());
-                                users.put("Mobile_Number", edtDOB.getText().toString());
+                                users.put("DateOfBirth", edtDOB.getText().toString());
+                                users.put("MobileNumber", edtPhone.getText().toString());
                                 users.put("E-mail", edtEmail.getText().toString());
 
                                 userref.setValue(users);
@@ -111,14 +112,15 @@ public class SignupActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()){
-                                                    Toast.makeText(SignupActivity.this, "Display name updated", Toast.LENGTH_SHORT).show();
+                                                    FancyToast.makeText(SignupActivity.this, "Hi, " + edtName.getText().toString() + " signup successful \nNow verify your Email before Login",
+                                                            FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
                                                 }
                                             }
                                         });
-                                FancyToast.makeText(SignupActivity.this, "Hi, " + edtName.getText().toString() + " signup successful \nnow verify your Email before Login",
-                                        FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
                                 mauth.signOut();
-                                finish();
+                                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
                             } else {
 
                                 FancyToast.makeText(SignupActivity.this, "Sign up failed, try again",
@@ -138,5 +140,6 @@ public class SignupActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
 }

@@ -1,64 +1,117 @@
 package com.example.kvthub;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Users#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Users extends Fragment {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.ArrayList;
+import java.util.Objects;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import static com.example.kvthub.Publicpost.mynam;
+
+
+public class Users extends Fragment implements UserAdapter.OnUserClickListener {
+    private RecyclerView listusers;
+    public static ArrayList<String> usernames;
+    public static ArrayList<String> UIDs;
+    String me;
+
 
     public Users() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Users.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Users newInstance(String param1, String param2) {
-        Users fragment = new Users();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_users, container, false);
+        View v = inflater.inflate(R.layout.fragment_users, container, false);
+        listusers = v.findViewById(R.id.listusers);
+        me = mynam;
+        usernames = new ArrayList<>();
+        UIDs = new ArrayList<>();
+        listusers.setLayoutManager(new LinearLayoutManager(getContext()));
+        final UserAdapter userAdapter = new UserAdapter(usernames, this);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null){
+            final ProgressDialog dialog = new ProgressDialog(getActivity());
+            dialog.setMessage("Loading, please wait...");
+            dialog.show();
+
+
+        FirebaseDatabase.getInstance().getReference().child("MyUsers").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if(!snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                {
+                    UIDs.add(snapshot.getKey());
+                }
+                String username =(String)snapshot.child("Name").getValue();
+                try {
+                    if(!Objects.requireNonNull(username).equals(me)){
+                        usernames.add(username);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                    //Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+                listusers.setAdapter(userAdapter);
+                dialog.dismiss();
+            }
+
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        }
+        return v;
+    }
+
+    @Override
+    public void OnUserClick(int position) {
+        Toast.makeText(getContext(), UIDs.get(position), Toast.LENGTH_SHORT).show();
+        Log.i("My", position + "");
     }
 }

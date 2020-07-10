@@ -16,20 +16,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-        <activity android:name=".Social"
+
+        <activity android:name=".View_Private_Post"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".View_days"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Send_privateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Social"
             android:screenOrientation="portrait"
             android:theme="@style/social"/>
-        <activity android:name=".ViewPostActivity"
-            android:screenOrientation="portrait"/>
         <activity
             android:name=".SignupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Socialmediaactivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
