@@ -34,7 +34,7 @@ public class View_Private_Post extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         Query query = FirebaseDatabase.getInstance().getReference().child("MyUsers").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("ReceivedPosts").child(thisday).child("PostData");
+                .child("ReceivedPosts").child(thisday);
         FirebaseRecyclerOptions<PostData> options = new FirebaseRecyclerOptions.Builder<PostData>()
                 .setQuery(query, PostData.class)
                 .build();

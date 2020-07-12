@@ -1,6 +1,7 @@
 package com.example.kvthub;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,6 +15,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class Social extends AppCompatActivity {
 
@@ -22,6 +30,8 @@ public class Social extends AppCompatActivity {
     private TabAdapter tabAdapter;
     private TabLayout tabLayout;
     private FirebaseAuth firebaseAuth;
+    public static Long maxid = Long.valueOf(0);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +45,7 @@ public class Social extends AppCompatActivity {
         viewPager.setAdapter(tabAdapter);
         tabLayout = findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager, false);
+        getMaxid();
     }
 
     @Override
@@ -59,12 +70,15 @@ public class Social extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.profile:
+                Intent intent1 = new Intent(this, MyProfile.class);
+                intent1.putExtra("KEY", firebaseAuth.getCurrentUser().getUid());
+                startActivity(intent1);
                 break;
             case R.id.App_info:
                 break;
         }
-            return super.onOptionsItemSelected(item);
-        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onBackPressed() {
@@ -88,12 +102,43 @@ public class Social extends AppCompatActivity {
         }).create().show();
     }
 
-    private void transiitiontologinactivity(){
+    private void transiitiontologinactivity() {
 
         Intent intent = new Intent(Social.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
 
+    }
+
+    public static long getMaxid() {
+        FirebaseDatabase.getInstance().getReference().child("Public").orderByKey()
+                .limitToFirst(1).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                maxid = Long.parseLong(Objects.requireNonNull(snapshot.getKey()));
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return maxid;
     }
 
 }

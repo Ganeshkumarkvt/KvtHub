@@ -16,9 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="q">
-
-        <activity android:name=".View_Private_Post"
+        <activity android:name=".MyProfile"
             android:screenOrientation="portrait"/>
+        <activity android:name=".AppInfo"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".View_Private_Post"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".View_days"
             android:screenOrientation="portrait" />
@@ -28,14 +32,13 @@
         <activity
             android:name=".Social"
             android:screenOrientation="portrait"
-            android:theme="@style/social"/>
+            android:theme="@style/social" />
         <activity
             android:name=".SignupActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

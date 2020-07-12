@@ -75,7 +75,6 @@ public class Share extends Fragment implements View.OnClickListener{
     private ImageButton Info;
     private DatabaseReference reff;
     private PostData postData;
-    long maxid;
 
     public Share() {
         // Required empty public constructor
@@ -100,24 +99,7 @@ public class Share extends Fragment implements View.OnClickListener{
         postpic.setOnClickListener(this);
         uploadbtn.setOnClickListener(this);
         toggleButton = v.findViewById(R.id.mode);
-        reff = FirebaseDatabase.getInstance().getReference().child("MyUsers").child("Public");
-        Query query = reff.orderByKey().limitToFirst(1);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    String id =  dataSnapshot.getKey();
-                    maxid = Long.parseLong(id);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        String s = reff.limitToFirst(1).orderByKey().toString();
-        Log.i("My", s);
+        reff = FirebaseDatabase.getInstance().getReference().child("Public");
         postData = new PostData();
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -283,8 +265,8 @@ public class Share extends Fragment implements View.OnClickListener{
                 cursor.close();
                 file = new File(path);
                 bitmap = new Compressor.Builder(getContext())
-                        .setMaxHeight(1000)
-                        .setMaxWidth(1000)
+                        .setMaxHeight(1024)
+                        .setMaxWidth(1024)
                         .build()
                         .compressToBitmap(file);
                 Glide.with(this).load(bitmap).placeholder(R.drawable.hold).into(postpic);
@@ -302,16 +284,18 @@ public class Share extends Fragment implements View.OnClickListener{
                 intent.putExtra("Imagename", imgname);
                 intent.putExtra("ImageLink", ink);
                 intent.putExtra("Time",time);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
     }
 
     private void posttopublic(String des, String imgname, String ink, String time){
+        long temp = Social.getMaxid();
         postData.setDescription(des);
         postData.setImageLink(ink);
         postData.setImageName(imgname);
         postData.setTime(time);
         postData.setFromWhom(mynam);
-        reff.child(String.valueOf(maxid-1)).setValue(postData).addOnCompleteListener(new OnCompleteListener<Void>() {
+        reff.child(String.valueOf(temp-1)).setValue(postData).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){

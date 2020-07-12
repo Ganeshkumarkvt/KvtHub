@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
@@ -13,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,9 +27,11 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    final private String EMAIL_KEY = "USEREMAIL";
     private EditText edtemail, edtPassword;
     private Button btnsignup, btnsignin;
     private ToggleButton forpass;
+    private ImageView Roll;
 
 
     @Override
@@ -39,9 +43,14 @@ public class LoginActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser() != null){
             transitiontosocialmediaactivity();
         }
-
         edtemail = findViewById(R.id.edtemail);
         edtPassword = findViewById(R.id.edtpassword);
+        Roll = findViewById(R.id.roll);
+        if(getPreferences(MODE_PRIVATE) != null){
+            SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+            String e = sharedPreferences.getString(EMAIL_KEY, "");
+            edtemail.setText(e);
+        }
 
         edtPassword.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -99,28 +108,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signin(){
-        ProgressDialog progressDialogL = new ProgressDialog(LoginActivity.this);
-        progressDialogL.setMessage("signing in, please wait...");
-        progressDialogL.show();
-        if (edtemail.getText().toString().equals("") && edtPassword.getText().toString().equals("")){
+        if (edtemail.getText().toString().equals("") || edtPassword.getText().toString().equals("")){
             FancyToast.makeText(LoginActivity.this, "Enter all required details", FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
         }else {
+            Roll.animate().rotation(-2160).setDuration(5000);
             mAuth.signInWithEmailAndPassword(edtemail.getText().toString(), edtPassword.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                FancyToast.makeText(LoginActivity.this, "Signin success", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
-                                edtemail.setText("");
-                                edtPassword.setText("");
+                                SharedPreferences  sharedPreferences = getPreferences(MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(EMAIL_KEY, edtemail.getText().toString());
+                                editor.apply();
                                 transitiontosocialmediaactivity();
-
+                                edtPassword.setText("");
                             } else {
                                 FancyToast.makeText(LoginActivity.this, "Signin failed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
                             }
                         }
                     });
-            progressDialogL.dismiss();
         }
     }
 

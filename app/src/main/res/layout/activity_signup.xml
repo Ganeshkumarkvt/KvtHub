@@ -107,9 +107,11 @@
 
     <Button
         android:id="@+id/Signupbtn"
+        style="@style/Elevatiombtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/button_bacckground"
+        android:padding="10dp"
         android:text="Sign up"
         android:textColor="@color/White"
         android:textSize="18sp"

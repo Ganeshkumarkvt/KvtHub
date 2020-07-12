@@ -27,6 +27,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -35,6 +36,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText edtName, edtDOB, edtPhone, edtEmail, edtPassword;
     private Button signupbtn;
     private FirebaseDatabase database;
+    private UserData userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class SignupActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         mauth = FirebaseAuth.getInstance();
-
+        userData = new UserData();
         pass = findViewById(R.id.passbtn);
         edtName = (EditText)findViewById(R.id.edtName);
         edtDOB = (EditText)findViewById(R.id.edtDOB);
@@ -84,7 +86,7 @@ public class SignupActivity extends AppCompatActivity {
 
         } else {
 
-            ProgressDialog progressDialog = new ProgressDialog(this);
+            final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("signing up, please wait");
             progressDialog.show();
 
@@ -96,13 +98,14 @@ public class SignupActivity extends AppCompatActivity {
                             DatabaseReference userref = database.getReference().child("MyUsers").child(task.getResult().getUser().getUid());
 
                             if (task.isSuccessful()) {
-                                Map<String, String> users = new HashMap<>();
-                                users.put("Name", edtName.getText().toString());
-                                users.put("DateOfBirth", edtDOB.getText().toString());
-                                users.put("MobileNumber", edtPhone.getText().toString());
-                                users.put("E-mail", edtEmail.getText().toString());
+                                userData.setProfile(edtName.getText().toString());
+                                userData.setDateOfBirth(edtDOB.getText().toString());
+                                userData.setEmail(edtEmail.getText().toString());
+                                userData.setMobileNumber(edtPhone.getText().toString());
 
-                                userref.setValue(users);
+                                userref.setValue(userData);
+
+                                Objects.requireNonNull(mauth.getCurrentUser()).sendEmailVerification();
 
                                 UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
                                         .setDisplayName(edtName.getText().toString())
@@ -117,6 +120,7 @@ public class SignupActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
+                                progressDialog.dismiss();
                                 mauth.signOut();
                                 Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);

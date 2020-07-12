@@ -17,6 +17,7 @@ import android.widget.ListView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -25,18 +26,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import static com.example.kvthub.Publicpost.mynam;
+
 public class Send_privateActivity extends AppCompatActivity implements UserAdapter.OnUserClickListener {
 
     private RecyclerView listsend;
     private ArrayList<String> S_users, S_Uid;
     private String ImgLink, description, imagename, posttime;
     private SimpleDateFormat dayFormat;
+    private DatabaseReference Private;
+    private PostData post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_private);
-
+        Private = FirebaseDatabase.getInstance().getReference().child("MyUsers");
         S_users = new ArrayList<>();
         S_Uid = new ArrayList<>();
         S_users = Users.usernames;
@@ -50,24 +55,27 @@ public class Send_privateActivity extends AppCompatActivity implements UserAdapt
         UserAdapter user = new UserAdapter(S_users, this);
         listsend.setAdapter(user);
         dayFormat = new SimpleDateFormat("EEEE");
+        post = new PostData();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
     public void OnUserClick(final int position) {
-        final HashMap<String, String> privpost = new HashMap<>();
-        privpost.put("FromWhom", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        privpost.put("Time", posttime);
-        privpost.put("Description", description);
-        privpost.put("ImageName", imagename);
-        privpost.put("ImageLink", ImgLink);
+        post.setFromWhom(mynam);
+        post.setTime(posttime);
+        post.setImageName(imagename);
+        post.setDescription(description);
+        post.setImageLink(ImgLink);
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirm").setMessage("Do you want to send this post to "+ S_users.get(position))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        FirebaseDatabase.getInstance().getReference().child("MyUsers").child(S_Uid.get(position))
-                                .child("ReceivedPosts").child(dayFormat.format(new Date())).child("PostData").push().setValue(privpost)
+                        Private.child(S_Uid.get(position)).child("ReceivedPosts").child(dayFormat.format(new Date())).push().setValue(post)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

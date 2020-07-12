@@ -1,7 +1,8 @@
 package com.example.kvthub;
 
-import android.annotation.SuppressLint;
+
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,16 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,6 +35,7 @@ public class Users extends Fragment implements UserAdapter.OnUserClickListener {
     public static ArrayList<String> usernames;
     public static ArrayList<String> UIDs;
     String me;
+    private DatabaseReference users;
 
 
     public Users() {
@@ -44,7 +43,6 @@ public class Users extends Fragment implements UserAdapter.OnUserClickListener {
     }
 
 
-    @SuppressLint("NewApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,32 +52,34 @@ public class Users extends Fragment implements UserAdapter.OnUserClickListener {
         me = mynam;
         usernames = new ArrayList<>();
         UIDs = new ArrayList<>();
+        users = FirebaseDatabase.getInstance().getReference().child("MyUsers");
         listusers.setLayoutManager(new LinearLayoutManager(getContext()));
         final UserAdapter userAdapter = new UserAdapter(usernames, this);
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             final ProgressDialog dialog = new ProgressDialog(getActivity());
             dialog.setMessage("Loading, please wait...");
+            dialog.setCancelable(false);
             dialog.show();
 
 
-        FirebaseDatabase.getInstance().getReference().child("MyUsers").addChildEventListener(new ChildEventListener() {
+        users.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                if(!snapshot.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                if(!Objects.equals(snapshot.getKey(), FirebaseAuth.getInstance().getCurrentUser().getUid()))
                 {
                     UIDs.add(snapshot.getKey());
                 }
-                String username =(String)snapshot.child("Name").getValue();
+                String username = (String) snapshot.child("profile").getValue();
                 try {
+                    assert username != null;
                     if(!Objects.requireNonNull(username).equals(me)){
                         usernames.add(username);
                     }
                 }catch (Exception e){
                     e.printStackTrace();
-                    //Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-
                 listusers.setAdapter(userAdapter);
                 dialog.dismiss();
             }
@@ -111,7 +111,8 @@ public class Users extends Fragment implements UserAdapter.OnUserClickListener {
 
     @Override
     public void OnUserClick(int position) {
-        Toast.makeText(getContext(), UIDs.get(position), Toast.LENGTH_SHORT).show();
-        Log.i("My", position + "");
+        Intent intent = new Intent(getContext(), MyProfile.class);
+        intent.putExtra("KEY", UIDs.get(position));
+        startActivity(intent);
     }
 }
