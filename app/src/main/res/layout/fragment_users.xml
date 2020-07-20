@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Users"
-    android:orientation="vertical">
+    android:background="#E4E4E4"
+    android:orientation="vertical"
+    tools:context=".Users">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/listusers"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:divider="#E4E4E4" />
+</LinearLayout>

@@ -14,4 +14,8 @@
     <style name="Elevatiombtn">
     <item name="elevation">15dp</item>
     </style>
+    <style name="Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/launcheritem</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
 </resources>

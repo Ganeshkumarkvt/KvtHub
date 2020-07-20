@@ -6,14 +6,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MyProfile">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#E4E4E4">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardprofimg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginTop="50dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="30dp"
@@ -23,9 +25,29 @@
 
             <ImageView
                 android:id="@+id/imgprofile"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
+                app:srcCompat="@drawable/hold" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:visibility="gone"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgperson"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:srcCompat="@drawable/hold" />
 
         </androidx.cardview.widget.CardView>
@@ -40,7 +62,7 @@
             android:focusableInTouchMode="false"
             app:cardCornerRadius="20dp"
             app:cardElevation="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/loadRecent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/cardprofimg">
@@ -62,7 +84,6 @@
                     android:text="Change"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary"
-                    android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@id/userProfName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +109,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -124,7 +145,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -158,7 +179,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -192,7 +213,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -216,7 +237,6 @@
                     android:textColor="@color/inputText"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@id/TextView6"
                     app:layout_constraintEnd_toStartOf="@id/UserPhone"
                     app:layout_constraintStart_toStartOf="parent"
@@ -227,7 +247,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -236,7 +256,6 @@
                     android:inputType="phone"
                     android:padding="5dp"
                     android:textSize="18sp"
-                    android:visibility="gone"
                     app:layout_constraintBottom_toTopOf="@id/UserHobbies"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/TextView5"
@@ -262,7 +281,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -296,7 +315,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -330,7 +349,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/days_btn"
+                    android:background="@drawable/profileinfoback"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:ems="10"
@@ -355,12 +374,38 @@
                     android:textOn="UPDATE"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/UserWork" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/loadRecent"
+            style="@style/Elevatiombtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_bacckground"
+            android:padding="10dp"
+            android:text="tap to see your Posts"
+            android:textColor="@color/White"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/userRecent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carduserdetail" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userRecent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/carduserdetail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

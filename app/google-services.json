@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:230612926083:android:5f2d31a313e38e6f7ca5b6",
+        "mobilesdk_app_id": "1:230612926083:android:015efc3c6ec960fb7ca5b6",
         "android_client_info": {
-          "package_name": "com.example.kvthub"
+          "package_name": "com.Ganeshkumarkvt.kvthub"
         }
       },
       "oauth_client": [

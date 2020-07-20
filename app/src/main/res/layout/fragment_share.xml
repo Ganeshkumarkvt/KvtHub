@@ -4,168 +4,171 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E4E4E4">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardzoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp"
+                app:cardUseCompatPadding="true">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/myname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:text="Author"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@id/timenow"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+
+                        android:id="@+id/timenow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:text="01/03/2002   2:34 pm"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/myname" />
+
+                    <ImageView
+                        android:id="@+id/myimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        android:src="@drawable/hold"
+                        app:layout_constraintBottom_toTopOf="@id/mydescrip"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/timenow" />
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+
+                        android:id="@+id/mydescrip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:hint="Write a description"
+                        android:lineSpacingExtra="3sp"
+                        android:padding="5dp"
+                        android:shadowColor="#00FFFFFF"
+                        android:textColor="@color/inputText"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/myimg"
+                        app:met_textColor="@color/inputText"
+                        app:met_textColorHint="@color/FloatingText"
+                        app:met_underlineColor="#00FFFFFF" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="15dp"
-                android:orientation="vertical">
+                android:layout_height="90dp">
 
-                <TextView
-                    android:id="@+id/myname"
-                    android:layout_width="0dp"
+                <ToggleButton
+                    android:id="@+id/mode"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="14dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:text="Author"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="24sp"
+                    android:background="@drawable/button_bacckground"
+                    android:padding="10dp"
+                    android:text="ToggleButton"
+                    android:textColor="#FFFFFF"
+                    android:textOff="MODE: PUBLIC"
+                    android:textOn="MODE: PRIVATE"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@id/timenow"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/uploadbtn"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-
-                    android:id="@+id/timenow"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:text="01/03/2002   2:34 pm"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/myname" />
-
-                <ImageView
-                    android:id="@+id/myimg"
+                <Button
+                    android:id="@+id/uploadbtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="320dp"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:src="@drawable/hold"
-                    app:layout_constraintBottom_toTopOf="@id/mydescrip"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/timenow" />
-
-                <com.rengwuxian.materialedittext.MaterialEditText
-
-                    android:id="@+id/mydescrip"
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="center"
-                    android:hint="Write a description"
-                    android:padding="5dp"
-                    android:shadowColor="#00FFFFFF"
-                    android:textColor="@color/inputText"
-                    android:textColorHint="@color/colorPrimary"
-                    android:textSize="18sp"
+                    android:background="@drawable/button_bacckground"
+                    android:padding="10dp"
+                    android:text="UPLOAD"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/myimg"
-                    app:met_textColor="@color/inputText"
-                    app:met_textColorHint="@color/FloatingText"
-                    app:met_underlineColor="#00FFFFFF" />
+                    app:layout_constraintStart_toEndOf="@id/mode"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:scaleX="1.2"
+                    android:scaleY="1.2"
+                    android:src="@drawable/ic_baseline_info_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/uploadbtn"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@id/mode"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.04000002" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
-
-
-    </androidx.cardview.widget.CardView>
-
-
-    <ToggleButton
-        android:id="@+id/mode"
-        style="@style/Elevatiombtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_bacckground"
-        android:padding="10dp"
-        android:text="ToggleButton"
-        android:textColor="#FFFFFF"
-        android:textOff="MODE: PUBLIC"
-        android:textOn="MODE: PRIVATE"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/uploadbtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline2" />
-
-    <Button
-        android:id="@+id/uploadbtn"
-        style="@style/Elevatiombtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_bacckground"
-        android:padding="10dp"
-        android:text="UPLOAD"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mode"
-        app:layout_constraintTop_toBottomOf="@id/guideline2" />
-
-    <ImageButton
-        android:id="@+id/info"
-        style="@style/Elevatiombtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:background="#00FFFFFF"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/ic_baseline_info_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/uploadbtn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/mode"
-        app:layout_constraintTop_toBottomOf="@id/guideline2"
-        app:layout_constraintVertical_bias="0.120000005" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.85" />
-
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

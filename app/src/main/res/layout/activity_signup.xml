@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E4E4E4"
     android:onClick="SignuplayoutTapped"
     tools:context=".SignupActivity">
 
@@ -14,7 +15,7 @@
         android:drawableStart="@drawable/ic_baseline_account_box_24"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="Enter your Name"
+        android:hint="Enter Profile name"
         android:inputType="textPersonName"
         android:maxLength="16"
         android:textColor="@color/inputText"
@@ -25,6 +26,9 @@
         app:met_floatingLabel="highlight"
         app:met_floatingLabelText="Enter your Name"
         app:met_floatingLabelTextColor="@color/FloatingText"
+        app:met_helperText="This name after can't be changeable"
+        app:met_helperTextAlwaysShown="false"
+        app:met_helperTextColor="@color/Red"
         app:met_primaryColor="@color/FloatingText"
         app:met_textColorHint="@color/FloatingText"
         app:met_underlineColor="@color/FloatingText" />

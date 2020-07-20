@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Send_privateActivity"
-    android:orientation="vertical">
+    android:background="#E4E4E4"
+    android:orientation="vertical"
+    tools:context=".Send_privateActivity">
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="Tap an user to send post individually"
+        android:text="@string/tap_an_user_to_send_post_individually"
         android:textColor="@color/inputText"
         android:textSize="20sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/recyclesend"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@color/background" />
 
 </LinearLayout>
