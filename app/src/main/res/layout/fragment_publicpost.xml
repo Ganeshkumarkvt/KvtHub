@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Publicpost"
-    android:background="#E4E4E4">
+    android:background="@color/FragBack"
+    tools:context=".Publicpost">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/transbtn"
@@ -14,21 +14,21 @@
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="22dp"
         android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/write"
-        app:backgroundTint="#E1DDDD"
+        app:backgroundTint="#D8D7D7"
         app:elevation="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="true" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/publicrecycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/publicrecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.cardview.widget.CardView
@@ -39,8 +39,9 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
         android:visibility="gone"
-        app:cardCornerRadius="15dp"
-        app:cardElevation="20dp"
+        app:cardBackgroundColor="@color/CardBackground"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -60,7 +61,7 @@
                     android:layout_marginStart="16dp"
                     android:padding="5dp"
                     android:text="Author"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/FloatingText"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/neram"
@@ -75,6 +76,7 @@
                     android:layout_marginStart="20dp"
                     android:text="01/03/2002   2:52 PM"
                     android:textAllCaps="true"
+                    android:textColor="@color/timetxt"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +91,8 @@
                     android:hint="write a post"
                     android:lineSpacingExtra="3sp"
                     android:padding="5dp"
+                    android:shadowColor="@color/inputText"
+                    android:textColor="@color/inputText"
                     app:layout_constraintBottom_toTopOf="@id/writpost"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +101,10 @@
                     app:met_floatingLabelAnimating="true"
                     app:met_floatingLabelText="write a post"
                     app:met_floatingLabelTextColor="@color/FloatingText"
-                    app:met_textColorHint="@color/FloatingText" />
+                    app:met_primaryColor="@color/FloatingText"
+                    app:met_textColor="@color/inputText"
+                    app:met_textColorHint="@color/FloatingText"
+                    app:met_underlineColor="@color/FloatingText" />
 
                 <Button
                     android:id="@+id/writpost"

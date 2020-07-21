@@ -3,9 +3,13 @@
     <color name="colorPrimary">#E91E63</color>
     <color name="colorPrimaryDark">#C2185B</color>
     <color name="colorAccent">#0000ff</color>
-    <color name="background">#E6FFFFFF</color>
+    <color name="background">#E6F8F5F5</color>
     <color name="inputText">#000000</color>
     <color name="FloatingText">#E91E63</color>
     <color name="Red">#FF0000</color>
     <color name="White">#FFFFFF</color>
+    <color name="CardBackground">#FFFDFD</color>
+    <color name="FragBack">#E4E4E4</color>
+    <color name="timetxt">#373535</color>
+    <color name="profileinfo">#EDEDED</color>
 </resources>

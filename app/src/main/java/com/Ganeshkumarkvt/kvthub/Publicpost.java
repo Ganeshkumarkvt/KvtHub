@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.Ganeshkumarkvt.kvthub.R.drawable.close;
 import static com.Ganeshkumarkvt.kvthub.R.drawable.write;
 
@@ -87,18 +89,19 @@ public class Publicpost extends Fragment{
             public void onClick(View v) {
                 if(cardView.getVisibility() == View.GONE) {
                     cardView.setVisibility(View.VISIBLE);
-                    InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE);
                     inputMethodManager.showSoftInput(writpost,0);
                     floatingActionButton.setImageResource(close);
                 }else {
                     cardView.setVisibility(View.GONE);
                     floatingActionButton.setImageResource(write);
-                    try{
-                        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(Objects.requireNonNull(getActivity()).getCurrentFocus()).getWindowToken(), 0);
-                    }catch (Exception e){
+                    try {
+                        InputMethodManager inputMethodManager = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+
                 }
                 postbtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -142,24 +145,24 @@ public class Publicpost extends Fragment{
         neram.setText(T);
     }
 
-    private void writupload(){
+    private void writupload() {
         long temp = Social.getMaxid();
         data.setImageName("");
         data.setImageLink("");
         data.setDescription(writpost.getText().toString());
         data.setTime(T);
         data.setFromWhom(mynam);
-        FirebaseDatabase.getInstance().getReference().child("Public").child(String.valueOf(temp-1))
+        FirebaseDatabase.getInstance().getReference().child("Public").child(String.valueOf(temp - 1))
                 .setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    FancyToast.makeText(getContext(), "Post successful", FancyToast.LENGTH_SHORT,FancyToast.SUCCESS, false).show();
+                if (task.isSuccessful()) {
+                    FancyToast.makeText(getContext(), "Post successful", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
 
-                    try{
-                        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(Objects.requireNonNull(getActivity()).getCurrentFocus()).getWindowToken(), 0);
-                    }catch (Exception e){
+                    try {
+                        InputMethodManager inputMethodManager = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -171,8 +174,4 @@ public class Publicpost extends Fragment{
             }
         });
     }
-
-
-
-
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4E4E4"
+    android:background="@color/background"
     android:onClick="SignuplayoutTapped"
     tools:context=".SignupActivity">
 
@@ -18,7 +18,6 @@
         android:hint="Enter Profile name"
         android:inputType="textPersonName"
         android:maxLength="16"
-        android:textColor="@color/inputText"
         app:layout_constraintBottom_toTopOf="@+id/edtDOB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +29,7 @@
         app:met_helperTextAlwaysShown="false"
         app:met_helperTextColor="@color/Red"
         app:met_primaryColor="@color/FloatingText"
+        app:met_textColor="@color/inputText"
         app:met_textColorHint="@color/FloatingText"
         app:met_underlineColor="@color/FloatingText" />
 
@@ -43,7 +43,6 @@
         android:hint="Enter your Password"
         android:inputType="textPassword"
         android:maxLength="16"
-        android:textColor="@color/inputText"
         app:layout_constraintBottom_toTopOf="@id/Signupbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +54,7 @@
         app:met_maxCharacters="16"
         app:met_minCharacters="7"
         app:met_primaryColor="@color/FloatingText"
+        app:met_textColor="@color/inputText"
         app:met_textColorHint="@color/FloatingText"
         app:met_underlineColor="@color/FloatingText" />
 
@@ -68,7 +68,6 @@
         android:hint="Enter date of birth"
         android:inputType="date"
         android:maxLength="10"
-        android:textColor="@color/inputText"
         app:layout_constraintBottom_toTopOf="@id/edtPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,6 +79,7 @@
         app:met_helperTextAlwaysShown="true"
         app:met_helperTextColor="@color/Red"
         app:met_primaryColor="@color/FloatingText"
+        app:met_textColor="@color/inputText"
         app:met_textColorHint="@color/FloatingText"
         app:met_underlineColor="@color/FloatingText" />
 
@@ -95,7 +95,6 @@
         android:ems="10"
         android:hint="Enter your Email"
         android:inputType="textEmailAddress"
-        android:textColor="@color/inputText"
         app:layout_constraintBottom_toTopOf="@+id/edtpassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +105,7 @@
         app:met_helperText="Enter correctly Mandatory"
         app:met_helperTextColor="@color/Red"
         app:met_primaryColor="@color/FloatingText"
+        app:met_textColor="@color/inputText"
         app:met_textColorHint="@color/FloatingText"
         app:met_underlineColor="@color/FloatingText" />
 
@@ -117,7 +117,7 @@
         android:background="@drawable/button_bacckground"
         android:padding="10dp"
         android:text="Sign up"
-        android:textColor="@color/White"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -148,7 +148,6 @@
         android:hint="Enter your mobile no."
         android:inputType="phone"
         android:maxLength="10"
-        android:textColor="@color/inputText"
         app:layout_constraintBottom_toTopOf="@id/edtEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,6 +158,7 @@
         app:met_helperText="eliminate '+91'"
         app:met_helperTextColor="@color/Red"
         app:met_primaryColor="@color/FloatingText"
+        app:met_textColor="@color/inputText"
         app:met_textColorHint="@color/FloatingText"
         app:met_underlineColor="@color/FloatingText" />
 

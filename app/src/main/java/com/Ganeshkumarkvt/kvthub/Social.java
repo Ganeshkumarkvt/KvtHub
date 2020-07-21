@@ -114,7 +114,7 @@ public class Social extends AppCompatActivity {
     private void transiitiontologinactivity() {
 
         Intent intent = new Intent(Social.this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
     }

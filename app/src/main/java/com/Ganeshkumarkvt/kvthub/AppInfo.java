@@ -2,6 +2,7 @@ package com.Ganeshkumarkvt.kvthub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
@@ -16,10 +17,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,12 +36,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.WHITE;
+
 public class AppInfo extends AppCompatActivity {
-    private ImageView App;
     private ListView simplelist;
     private String[] Mainitem, subitem;
     private SimpleAdapter simpleAdapter;
-    private File file;
     private String UL;
     private float VN;
 
@@ -46,7 +50,6 @@ public class AppInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_info);
-        App = findViewById(R.id.applogo);
         simplelist = findViewById(R.id.simplelist);
         Mainitem = new String[]{"APP VERSION", "CHECK FOR UPDATES", "WEBSITE"};
         subitem = new String[]{BuildConfig.VERSION_NAME, "", "KONDALVATTAMTHIDAL G-sites"};
@@ -60,9 +63,25 @@ public class AppInfo extends AppCompatActivity {
        simpleAdapter = new SimpleAdapter(this, data,
                android.R.layout.simple_list_item_2,
                new String[]{"title", "value"},
-               new int[]{android.R.id.text1, android.R.id.text2});
+               new int[]{android.R.id.text1, android.R.id.text2}){
+           @Override
+           public View getView(int position, View convertView, ViewGroup parent) {
+
+               View v = super.getView(position, convertView, parent);
+               TextView tv = v.findViewById(android.R.id.text1);
+               TextView Tv1= v.findViewById(android.R.id.text2);
+               if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+                   tv.setTextColor(0xFFBDBDBD);
+                   Tv1.setTextColor(WHITE);
+               }else{
+                   tv.setTextColor(0xFF373535);
+                   Tv1.setTextColor(BLACK);
+               }
+
+               return v;
+           }
+       };
         simplelist.setAdapter(simpleAdapter);
-        file = new File("/KvtHub/App/");
         simplelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

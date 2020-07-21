@@ -2,8 +2,10 @@ package com.Ganeshkumarkvt.kvthub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -18,6 +20,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 public class Launcher extends AppCompatActivity{
 
@@ -26,11 +29,23 @@ public class Launcher extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sharedPreferences = getSharedPreferences("DARK",MODE_PRIVATE);
+        String dark = sharedPreferences.getString("DARK","");
+        if(!Objects.equals(dark, "")){
+            switch (Objects.requireNonNull(dark)){
+                case "NO":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    break;
+                case "YES":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    break;
+            }
+        }else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
-
         FirebaseApp.initializeApp(this);
-
         FirebaseMessaging.getInstance().subscribeToTopic("KvtHubNoti").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

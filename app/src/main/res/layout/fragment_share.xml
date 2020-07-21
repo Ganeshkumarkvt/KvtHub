@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4E4E4">
+    android:background="@color/FragBack">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/CardBackground"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -51,7 +52,7 @@
                         android:layout_weight="1"
                         android:padding="5dp"
                         android:text="Author"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="#E91E63"
                         android:textSize="22sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@id/timenow"
@@ -70,6 +71,7 @@
                         android:padding="5dp"
                         android:text="01/03/2002   2:34 pm"
                         android:textAllCaps="true"
+                        android:textColor="@color/timetxt"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -101,12 +103,14 @@
                         android:padding="5dp"
                         android:shadowColor="#00FFFFFF"
                         android:textColor="@color/inputText"
-                        android:textColorHint="@color/colorPrimary"
+                        android:textColorHint="@color/FloatingText"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/myimg"
+                        app:met_floatingLabelTextColor="@color/FloatingText"
+                        app:met_primaryColor="@color/FloatingText"
                         app:met_textColor="@color/inputText"
                         app:met_textColorHint="@color/FloatingText"
                         app:met_underlineColor="#00FFFFFF" />

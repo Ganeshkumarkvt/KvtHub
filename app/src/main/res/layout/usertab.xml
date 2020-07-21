@@ -6,6 +6,7 @@
     android:layout_marginStart="5dp"
     android:layout_marginEnd="5dp"
     android:orientation="vertical"
+    app:cardBackgroundColor="@color/CardBackground"
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
@@ -14,13 +15,12 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FAFAFA"
         android:gravity="center"
         android:padding="12dp"
         android:shadowColor="@color/inputText"
         android:text="Username"
         android:textColor="@color/inputText"
-        android:textSize="19sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
 

@@ -9,19 +9,19 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:targetApi="q">
+        tools:targetApi="q"
+        tools:ignore="AllowBackup">
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
@@ -37,14 +37,16 @@
         </activity>
         <activity
             android:name=".UserProfile"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/social"/>
         <activity
             android:name=".KvtWebView"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/social"/>
         <activity
             android:name=".MyProfile"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/social"/>
         <activity
             android:name=".AppInfo"
             android:screenOrientation="portrait"
@@ -54,10 +56,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".View_days"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/social"/>
         <activity
             android:name=".Send_privateActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/social"/>
         <activity
             android:name=".Social"
             android:screenOrientation="portrait"

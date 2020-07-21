@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3A393A</color>
+    <color name="colorPrimaryDark">#121212</color>
+    <color name="colorAccent">#FF0000</color>
+    <color name="background">#121212</color>
+    <color name="inputText">#FFFFFF</color>
+    <color name="FloatingText">#E91E63</color>
+    <color name="Red">#FF0000</color>
+    <color name="White">#222121</color>
+    <color name="CardBackground">#2E2C2C</color>
+    <color name="FragBack">#121212</color>
+    <color name="timetxt">#BDBDBD</color>
+    <color name="profileinfo">#333333</color>
+</resources>

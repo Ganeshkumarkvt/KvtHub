@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4E4E4"
+    android:background="@color/background"
     android:onClick="LoginlayoutTapped"
     tools:context=".LoginActivity">
 
@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
+        app:cardBackgroundColor="@color/CardBackground"
         app:cardCornerRadius="20dp"
         app:cardElevation="15dp"
         app:layout_constraintBottom_toTopOf="@id/btnsignin"
@@ -55,7 +56,9 @@
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelText="Enter your Email"
                 app:met_floatingLabelTextColor="@color/FloatingText"
-                app:met_primaryColor="@color/colorPrimary"
+                app:met_helperTextColor="@color/FloatingText"
+                app:met_primaryColor="@color/FloatingText"
+                app:met_textColor="@color/inputText"
                 app:met_textColorHint="@color/FloatingText"
                 app:met_underlineColor="@color/FloatingText" />
 
@@ -87,7 +90,8 @@
                 app:met_floatingLabel="highlight"
                 app:met_floatingLabelText="Enter your password"
                 app:met_floatingLabelTextColor="@color/FloatingText"
-                app:met_primaryColor="@color/colorPrimary"
+                app:met_primaryColor="@color/FloatingText"
+                app:met_textColor="@color/inputText"
                 app:met_textColorHint="@color/FloatingText"
                 app:met_underlineColor="@color/FloatingText" />
 
@@ -118,7 +122,7 @@
         android:background="@drawable/button_bacckground"
         android:padding="10dp"
         android:text="Sign in"
-        android:textColor="@color/White"
+        android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/btnsignup"

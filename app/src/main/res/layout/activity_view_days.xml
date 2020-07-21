@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4E4E4"
+    android:background="@color/FragBack"
     android:orientation="vertical"
     tools:context=".View_days">
 
@@ -27,8 +27,9 @@
         android:layout_margin="8dp"
         android:layout_weight="1"
         android:background="@drawable/days_btn"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/inputText"
         android:text="Button"
+        android:textColor="@color/inputText"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -40,8 +41,9 @@
         android:layout_margin="8dp"
         android:layout_weight="1"
         android:background="@drawable/days_btn"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/inputText"
         android:text="Button"
+        android:textColor="@color/inputText"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -53,8 +55,9 @@
         android:layout_margin="8dp"
         android:layout_weight="1"
         android:background="@drawable/days_btn"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/inputText"
         android:text="Button"
+        android:textColor="@color/inputText"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -66,8 +69,9 @@
         android:layout_margin="8dp"
         android:layout_weight="1"
         android:background="@drawable/days_btn"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/inputText"
         android:text="Button"
+        android:textColor="@color/inputText"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -79,8 +83,9 @@
         android:layout_margin="8dp"
         android:layout_weight="1"
         android:background="@drawable/days_btn"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/inputText"
         android:text="Button"
+        android:textColor="@color/inputText"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -92,8 +97,9 @@
         android:layout_margin="8dp"
         android:layout_weight="1"
         android:background="@drawable/days_btn"
-        android:shadowColor="#000000"
+        android:shadowColor="@color/inputText"
         android:text="Button"
+        android:textColor="@color/inputText"
         android:textSize="20sp"
         android:textStyle="bold" />
 
