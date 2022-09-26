@@ -1,10 +1,21 @@
 package com.Ganeshkumarkvt.kvthub;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+import static com.Ganeshkumarkvt.kvthub.R.drawable.close;
+import static com.Ganeshkumarkvt.kvthub.R.drawable.write;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -14,15 +25,7 @@ import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.paging.DatabasePagingOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,10 +38,6 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
-import static com.Ganeshkumarkvt.kvthub.R.drawable.close;
-import static com.Ganeshkumarkvt.kvthub.R.drawable.write;
 
 
 public class Publicpost extends Fragment{
@@ -73,7 +72,7 @@ public class Publicpost extends Fragment{
         now =  new SimpleDateFormat("dd/MM/yyyy  h:mm a");
         layoutManager = new LinearLayoutManager(getContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()), Manifest.permission_group.STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission_group.STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission_group.STORAGE}, 2000);
             }
         }
@@ -96,8 +95,8 @@ public class Publicpost extends Fragment{
                     cardView.setVisibility(View.GONE);
                     floatingActionButton.setImageResource(write);
                     try {
-                        InputMethodManager inputMethodManager = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+                        InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -123,9 +122,9 @@ public class Publicpost extends Fragment{
                 .setPrefetchDistance(10)
                 .setPageSize(8)
                 .build();
-        DatabasePagingOptions<PostData> options = new DatabasePagingOptions.Builder<PostData>()
+        FirebaseRecyclerOptions<PostData> options= new FirebaseRecyclerOptions.Builder<PostData>()
                 .setLifecycleOwner(this)
-                .setQuery(query,config,PostData.class)
+                .setQuery(query, PostData.class)
                 .build();
         adapter = new PublicAdapter(options, getContext());
         recyclerView.setAdapter(adapter);
@@ -160,8 +159,8 @@ public class Publicpost extends Fragment{
                     FancyToast.makeText(getContext(), "Post successful", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
 
                     try {
-                        InputMethodManager inputMethodManager = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+                        InputMethodManager inputMethodManager = (InputMethodManager) requireActivity().getSystemService(INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

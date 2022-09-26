@@ -4,4 +4,5 @@
     <string name="enter_your_email">Enter your Email</string>
     <string name="enter_your_password">Enter your Password</string>
     <string name="tap_an_user_to_send_post_individually">Tap an user to send post individually</string>
+    <string name="todo">TODO</string>
 </resources>

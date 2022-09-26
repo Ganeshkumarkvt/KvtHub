@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/FragBack">
 
         <androidx.cardview.widget.CardView
@@ -28,7 +28,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/hold" />
+                app:srcCompat="@drawable/hold"
+                tools:ignore="ImageContrastCheck"
+                android:contentDescription="TODO" />
 
         </androidx.cardview.widget.CardView>
 
@@ -84,7 +86,7 @@
                     android:drawableStart="@drawable/sync"
                     android:text="Change"
                     android:textAllCaps="false"
-                    android:textColor="@color/FloatingText"
+                    android:textColor="#D81B60"
                     app:layout_constraintBottom_toTopOf="@id/userProfName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

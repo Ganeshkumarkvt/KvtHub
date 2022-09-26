@@ -2,32 +2,25 @@ package com.Ganeshkumarkvt.kvthub;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import com.bumptech.glide.Glide;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URL;
+import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -44,7 +37,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
-        String Title = remoteMessage.getNotification().getTitle();
+        String Title;
+        Title = Objects.requireNonNull(remoteMessage.getNotification()).getTitle();
         String msg = remoteMessage.getNotification().getBody();
         Uri photourl = remoteMessage.getNotification().getImageUrl();
 

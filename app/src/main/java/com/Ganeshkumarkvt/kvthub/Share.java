@@ -46,10 +46,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-import id.zelory.compressor.Compressor;
-
 import static android.app.Activity.RESULT_OK;
 import static com.Ganeshkumarkvt.kvthub.Publicpost.mynam;
+
+import id.zelory.compressor.Compressor;
 
 public class Share extends Fragment implements View.OnClickListener{
 
@@ -262,11 +262,11 @@ public class Share extends Fragment implements View.OnClickListener{
                 String path = cursor.getString(columnindex);
                 cursor.close();
                 file = new File(path);
-                bitmap = new Compressor.Builder(getContext())
-                        .setMaxHeight(1024)
-                        .setMaxWidth(1024)
-                        .build()
-                        .compressToBitmap(file);
+                bitmap = new Compressor(getContext())
+                        .setMaxWidth(640)
+                        .setMaxHeight(480)
+                        .setQuality(75)
+                        .setCompressFormat(Bitmap.CompressFormat.WEBP).compressToBitmap(file);
                 Glide.with(this).load(bitmap).placeholder(R.drawable.hold).into(postpic);
                 if(uploadbtn.getVisibility() == View.GONE) uploadbtn.setVisibility(View.VISIBLE);
 

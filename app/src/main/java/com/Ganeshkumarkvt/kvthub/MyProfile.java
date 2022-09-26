@@ -198,10 +198,12 @@ public class MyProfile extends AppCompatActivity implements View.OnClickListener
                 String path = cursor.getString(columnindex);
                 cursor.close();
                 File file = new File(path);
-                Bitmap profIMG = new Compressor.Builder(this)
-                        .setMaxHeight(640)
+                Bitmap profIMG;
+               profIMG = new Compressor(this)
                         .setMaxWidth(640)
-                        .build()
+                        .setMaxHeight(640)
+                        .setQuality(75)
+                        .setCompressFormat(Bitmap.CompressFormat.JPEG)
                         .compressToBitmap(file);
 
                 Glide.with(getApplicationContext()).load(profIMG).centerCrop().into(imageView);
