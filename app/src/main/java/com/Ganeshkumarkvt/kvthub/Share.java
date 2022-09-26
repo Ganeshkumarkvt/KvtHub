@@ -265,7 +265,7 @@ public class Share extends Fragment implements View.OnClickListener{
                 bitmap = new Compressor(getContext())
                         .setMaxWidth(640)
                         .setMaxHeight(480)
-                        .setQuality(75)
+                        .setQuality(80)
                         .setCompressFormat(Bitmap.CompressFormat.WEBP).compressToBitmap(file);
                 Glide.with(this).load(bitmap).placeholder(R.drawable.hold).into(postpic);
                 if(uploadbtn.getVisibility() == View.GONE) uploadbtn.setVisibility(View.VISIBLE);
