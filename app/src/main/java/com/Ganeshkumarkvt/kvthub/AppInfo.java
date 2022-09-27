@@ -51,8 +51,8 @@ public class AppInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_info);
         simplelist = findViewById(R.id.simplelist);
-        Mainitem = new String[]{"APP VERSION", "CHECK FOR UPDATES", "WEBSITE"};
-        subitem = new String[]{BuildConfig.VERSION_NAME, "", "KONDALVATTAMTHIDAL G-sites"};
+        Mainitem = new String[]{"APP VERSION", "CHECK FOR UPDATES",};
+        subitem = new String[]{BuildConfig.VERSION_NAME, ""};
             List<Map<String, String>> data = new ArrayList<>();
         for (int i= 0; i<Mainitem.length; i++){
             Map<String, String> datum = new HashMap<>(2);
@@ -85,8 +85,7 @@ public class AppInfo extends AppCompatActivity {
         simplelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 1:
+                if (position == 1) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (ContextCompat.checkSelfPermission(AppInfo.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
@@ -98,11 +97,6 @@ public class AppInfo extends AppCompatActivity {
                         }
 
 
-                break;
-                case 2:
-                Intent intent = new Intent(AppInfo.this, KvtWebView.class);
-                startActivity(intent);
-                break;
                 }
             }
         });

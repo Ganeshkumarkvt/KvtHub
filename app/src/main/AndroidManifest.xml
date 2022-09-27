@@ -40,10 +40,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/social"/>
         <activity
-            android:name=".KvtWebView"
-            android:screenOrientation="portrait"
-            android:theme="@style/social"/>
-        <activity
             android:name=".MyProfile"
             android:screenOrientation="fullSensor"
             android:theme="@style/social"/>
